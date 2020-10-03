@@ -12,11 +12,11 @@ public class ReadBD {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conexao = DriverManager.getConnection(url, user, pwd);
         System.out.println("Conectado!");
-        String readsql = "SELECT * FROM clientes_pf";
+        String readsql = "SELECT * FROM cliente";
         PreparedStatement readStm = conexao.prepareStatement(readsql);
         ResultSet resultSet = readStm.executeQuery();
         while (resultSet.next()) {
-            System.out.println("name: " + resultSet.getString("name"));
+            System.out.println("name: " + resultSet.getString("nome"));
         }
         conexao.close();
         System.out.println("Encerrado!");
