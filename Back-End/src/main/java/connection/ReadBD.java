@@ -1,10 +1,14 @@
 package connection;
 
+import produtos.Produto;
+
 import java.sql.*;
 
 public class ReadBD {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-
+    public static Produto getProdutoById(int id) throws ClassNotFoundException, SQLException {
+        String nome = "";
+        int quantidade = 0;
+        double valor = 0;
         String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
         String user = "root";
         String pwd = "root";
@@ -12,13 +16,19 @@ public class ReadBD {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conexao = DriverManager.getConnection(url, user, pwd);
         System.out.println("Conectado!");
-        String readsql = "SELECT * FROM cliente";
+        String readsql = "SELECT id, nome, quantidade, valorVenda FROM produto WHERE id = " + id;
         PreparedStatement readStm = conexao.prepareStatement(readsql);
         ResultSet resultSet = readStm.executeQuery();
         while (resultSet.next()) {
-            System.out.println("name: " + resultSet.getString("nome"));
+            nome = (resultSet.getString("nome"));
+            quantidade = (resultSet.getInt("quantidade"));
+            valor = (resultSet.getDouble("valorVenda"));
+
         }
+        Produto produto = new Produto(id, nome, quantidade, valor);
         conexao.close();
-        System.out.println("Encerrado!");
+        return produto;
     }
 }
+
+//"SELECT id FROM parisluxury.produto"

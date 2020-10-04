@@ -1,7 +1,11 @@
 package produtos;
 
+import java.sql.*;
+
 public class Produto {
 
+    private int id;
+    private String nome;
     private int quantidade;
     private String descricao;
     private double valorCompra;
@@ -9,7 +13,11 @@ public class Produto {
     private String categoria;
     private char tamanho;
 
-    public Produto(int quantidade, String descricao, double valorCompra, double valorVenda, String categoria, char tamanho){
+    public Produto(){}
+
+    public Produto(int id, String nome, int quantidade, double valorVenda){
+        this.id = id;
+        this.nome = nome;
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.valorCompra = valorCompra;
@@ -17,6 +25,28 @@ public class Produto {
         this.categoria =  categoria;
         this.tamanho = tamanho;
     }
+
+//    public Produto(int id, int quantidade, String descricao, double valorCompra, double valorVenda, String categoria, char tamanho){
+//        this.id = id;
+//        this.quantidade = quantidade;
+//        this.descricao = descricao;
+//        this.valorCompra = valorCompra;
+//        this.valorVenda = valorVenda;
+//        this.categoria =  categoria;
+//        this.tamanho = tamanho;
+//    }
+
+    /**
+     * getId
+     * @return Retorna o id do produto.
+     */
+    public int getId(){return id;}
+
+    /**
+     * getNome
+     * @return Retorna o nome do produto.
+     */
+    public String getNome(){return nome;}
 
     /**
      * getQuantidade
