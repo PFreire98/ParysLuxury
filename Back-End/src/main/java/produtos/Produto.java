@@ -1,7 +1,8 @@
 package produtos;
-
-import java.sql.*;
-
+/**
+@Entity
+@Table(name=Produto)
+*/
 public class Produto {
 
     private int id;

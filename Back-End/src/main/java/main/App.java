@@ -10,34 +10,83 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner in = new Scanner(System.in);
-        System.out.println("Menu\n" +
-                "1- Criar um produto\n" +
-                "2- Criar um pedido\n" +
-                "3- Sair ");
-        int menu = in.nextInt();
-
-        switch(menu){
-            case 1:
-                System.out.println("id do produto: ");
-                int id = in.nextInt();
-                System.out.println("nome do produto");
-                String nome = in.nextLine();
-                System.out.println("quantidade do produto: ");
-                int quantidade = in.nextInt();
-                System.out.println("valor venda: ");
-                double valor = in.nextDouble();
-                System.out.println("tamanho do produto: ");
-                char tamanho = in.next().charAt(0);
-                Produto produto = new Produto(id, nome, quantidade, valor);
-
-            case 2:
-                System.out.println("id do produto: ");
-                int id2 = in.nextInt();
-                System.out.println("Quantidade do produto: ");
-                int quantidade2 = in.nextInt();
-                Produto produtos = new Produto();
-                produtos = ReadBD.getProdutoById(id2);
-                Pedido pedido = new Pedido(produtos, quantidade2);
+        Pedido pedido = new Pedido();
+        Produto produtos = new Produto();
+        int menu = 0;
+        double valor;
+        while(menu != 9) {
+            System.out.println("" +
+                    "|===============================|\n" +
+                    "|          ParisLuxury          |\n" +
+                    "|===============================|\n" +
+                    "|1) Verificar o catálogo        |\n" +
+                    "|2) Criar um pedido             |\n" +
+                    "|3) Alterar um produto do pedido|\n" +
+                    "|4) Verificar o pedido          |\n" +
+                    "|9) Sair                        |\n" +
+                    "|===============================|");
+            System.out.println("Digite a opção desejada: ");
+            menu = in.nextInt();
+                if(menu == 1) {
+                    ReadBD.getCatalogo();
+                }else if(menu == 2) {
+                    System.out.println("[!] Qual é o id do produto que deseja colocar no pedido? ");
+                    int id = in.nextInt();
+                    System.out.println("[!] E qual é a quantidade? ");
+                    int quantidade = in.nextInt();
+                    produtos = ReadBD.getProdutoById(id);
+                    pedido.setPedido(produtos);
+                    valor = ReadBD.getValorById(id) ;
+                    pedido.setQuantidade(quantidade, valor);
+                    int menu2 = 0;
+                    do {
+                        System.out.println("" +
+                                "===========================\n" +
+                                "1) Adicionar outro produto\n" +
+                                "2) Sair do pedido\n" +
+                                "============================");
+                        menu2 = in.nextInt();
+//                        if(menu2 != 1 || menu2 != 2) {
+//                            System.out.println("[!] Opção inválida!");
+//                            System.out.println("" +
+//                                    "===========================\n" +
+//                                    "1) Adicionar outro produto\n" +
+//                                    "2) Sair do pedido\n" +
+//                                    "============================");
+//                            menu2 = in.nextInt();
+//                        }
+                        if (menu2 == 1){
+                            System.out.println("[!] Qual é o id do produto que deseja colocar no pedido? ");
+                            id = in.nextInt();
+                            produtos = ReadBD.getProdutoById(id);
+                            System.out.println("[!] E qual é a quantidade? ");
+                            quantidade = in.nextInt();
+                            pedido.setPedido(produtos);
+                            valor = ReadBD.getValorById(id) ;
+                            pedido.setQuantidade(quantidade, valor);
+                        }
+                    } while (menu2 != 2);
+                }else if (menu == 3){
+                    //Alterar um produto do carrinho
+                }else if (menu == 4) {
+                    System.out.println(pedido.getPedido());
+                }
         }
     }
 }
+/*
+---Criar Produto---
+
+System.out.println("id do produto: ");
+        int id = in.nextInt();
+        System.out.println("nome do produto");
+        String nome = in.nextLine();
+        System.out.println("quantidade do produto: ");
+        int quantidade = in.nextInt();
+        System.out.println("valor venda: ");
+        double valor = in.nextDouble();
+        System.out.println("tamanho do produto: ");
+        char tamanho = in.next().charAt(0);
+        Produto produto = new Produto(id, nome, quantidade, valor);
+        break;
+ */

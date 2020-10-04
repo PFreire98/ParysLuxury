@@ -1,29 +1,33 @@
 package venda;
 
+import connection.ReadBD;
 import produtos.Produto;
-import tad.TADFila;
+import tad.TADPilha;
+
+import java.sql.SQLException;
 
 public class Pedido {
 
-    private int quantidade;
     private int quantidadeTotal;
     private Produto produto;
     private double valorTotal;
-    private TADFila fPedido = new TADFila(15);
+    private TADPilha fPedido = new TADPilha(15);
+    private TADPilha fQuantidade = new TADPilha(15);
 
-//    public Pedido(){}
+    public Pedido(){}
 
-    public Pedido(Produto produto, int quantidade){
+    public void setPedido(Produto produto){
         this.produto = produto;
-        this.quantidade += quantidade;
-        this.quantidadeTotal += quantidade;
-        this.valorTotal += produto.getValorVenda();
         fPedido.inserir(produto.getId());
-        System.out.println("Passei por aqui!");
-        System.out.println(produto.getNome());
     }
 
-    public void delProduro(Produto produto, int quantidade){
+    public void setQuantidade(int quantidade, double valor){
+        this.quantidadeTotal += quantidade;
+        fQuantidade.inserir(quantidade);
+        this.valorTotal += (quantidade * valor);
+    }
+/*
+    public void delProduto(Produto produto, int quantidade){
         if(quantidade <= this.quantidade) {
             this.quantidade -= quantidade;
             this.quantidadeTotal -= quantidade;
@@ -35,8 +39,22 @@ public class Pedido {
         }
     }
 
-    public void getPedido(){
-        fPedido.toString();
+ */
+
+    public String getPedido() throws SQLException, ClassNotFoundException {
+        String p ="=======================\n" +
+                "  Carrinho de Compras\n" +
+                "=======================\n";
+        for(int i = 0; i < fPedido.tamanho(); i++) {
+            Produto produto =  ReadBD.getProdutoById(fPedido.getElemento(i));
+            p +=    "|ID: " + produto.getId() +"\n"+
+                    "|Produto: " + produto.getNome() +"\n"+
+                    "|Quantidade: " + fQuantidade.getElemento(i) +"\n"+
+                    "|Valor: " + "R$"+ produto.getValorVenda() +"\n"+
+                    "=======================\n";
+        }
+        p += "Valor Total: R$" + valorTotal + "\n";
+        return p;
     }
 
 }
