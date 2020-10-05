@@ -173,21 +173,73 @@ public class TADPilha {
      * Retorna a posicao sequencial de um elemento a partir do fundo (indice 0).
      * O elemento na posicao 0 e' o elemento de posicao 1 (primeira posicao).
      *
-     * @param n
+     * @param
      * @return
      */
-    public int elementoNaPosicaoN_DoFundo(int n) {
+    public int alteraElementoN(int n1, int n2) {
         int[] pilhaAuxiliar = new int[this.tamanhoMaximo];
-        int topoAuxiliar = 0;
+        int topoAuxiliar = -1;
+        int[] pilhaAuxiliar2 = new int[this.tamanhoMaximo];
+        int topoAuxiliar2 = -1;
         int x = 0;
+        int y = 0;
 
+        //DESEMPILHANDO E ALTERANDO O ELEMENTO
         for(int i = topo; i >= 0; i--){
-            pilhaAuxiliar[x] = pilha[i];
-            topoAuxiliar++;
-            x++;
+            if(i == n1-1){
+                pilhaAuxiliar[x] = n2;
+                topoAuxiliar++;
+                x++;
+            }else {
+                pilhaAuxiliar[x] = pilha[i];
+                topoAuxiliar++;
+                x++;
+            }
         }
-        this.pilha = pilhaAuxiliar;
-        elementoNaPosicaoN_DoTopo(n);
+
+        //EMPILHANDO NOVAMENTE
+        for(int i = topoAuxiliar; i >= 0; i--){
+            pilhaAuxiliar2[y] = pilhaAuxiliar[i];
+            topoAuxiliar2++;
+            y++;
+        }
+
+        this.pilha = pilhaAuxiliar2;
+
+        return -1;
+    }
+
+    /**
+     * Remove o elemento da posição n
+     * @param n
+     * */
+    public int removeElementoN(int n) {
+        int[] pilhaAuxiliar = new int[this.tamanhoMaximo];
+        int topoAuxiliar = -1;
+        int[] pilhaAuxiliar2 = new int[this.tamanhoMaximo];
+        int topoAuxiliar2 = -1;
+        int x = 0;
+        int y = 0;
+
+        //DESEMPILHANDO E REMOVENDO O ELEMENTO
+        for(int i = topo; i >= 0; i--){
+            if(i == n-1){
+                remover();
+            }else {
+                pilhaAuxiliar[x] = pilha[i];
+                topoAuxiliar++;
+                x++;
+            }
+        }
+
+        //EMPILHANDO NOVAMENTE
+        for(int i = topoAuxiliar; i >= 0; i--){
+            pilhaAuxiliar2[y] = pilhaAuxiliar[i];
+            topoAuxiliar2++;
+            y++;
+        }
+
+        this.pilha = pilhaAuxiliar2;
 
         return -1;
     }

@@ -36,7 +36,7 @@ public class App {
                     int quantidade = in.nextInt();
                     produtos = ReadBD.getProdutoById(id);
                     pedido.setPedido(produtos);
-                    valor = ReadBD.getValorById(id) ;
+                    valor = ReadBD.getValorById(id);
                     pedido.setQuantidade(quantidade, valor);
                     int menu2 = 0;
                     do {
@@ -46,15 +46,6 @@ public class App {
                                 "2) Sair do pedido\n" +
                                 "============================");
                         menu2 = in.nextInt();
-//                        if(menu2 != 1 || menu2 != 2) {
-//                            System.out.println("[!] Opção inválida!");
-//                            System.out.println("" +
-//                                    "===========================\n" +
-//                                    "1) Adicionar outro produto\n" +
-//                                    "2) Sair do pedido\n" +
-//                                    "============================");
-//                            menu2 = in.nextInt();
-//                        }
                         if (menu2 == 1){
                             System.out.println("[!] Qual é o id do produto que deseja colocar no pedido? ");
                             id = in.nextInt();
@@ -67,7 +58,7 @@ public class App {
                         }
                     } while (menu2 != 2);
                 }else if (menu == 3){
-                    //Alterar um produto do carrinho
+                    pedido.alteraPedido();
                 }else if (menu == 4) {
                     System.out.println(pedido.getPedido());
                 }
