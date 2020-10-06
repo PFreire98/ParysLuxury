@@ -2,6 +2,8 @@ package main;
 
 import connection.ReadBD;
 import produtos.Produto;
+import usuarios.Cliente;
+import usuarios.ClientePF;
 import venda.Pedido;
 
 import java.sql.SQLException;
@@ -12,6 +14,7 @@ public class App {
         Scanner in = new Scanner(System.in);
         Pedido pedido = new Pedido();
         Produto produtos = new Produto();
+
         int menu = 0;
         double valor;
         while(menu != 9) {

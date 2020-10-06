@@ -1,8 +1,4 @@
 package produtos;
-/**
-@Entity
-@Table(name=Produto)
-*/
 public class Produto {
 
     private int id;

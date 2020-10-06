@@ -6,7 +6,7 @@ public class ClientePF extends Cliente{
     private char sexo;
     private String cpf;
 
-    public ClientePF(String nome, String celular, String dataCadastro, String email, String senha, String nascimento, char sexo, String cpf){
+    public ClientePF(String nome, String celular, String dataCadastro, String email, String senha){
         super(nome, celular, dataCadastro, email, senha);
         this.nascimento = nascimento;
         this.sexo = sexo;

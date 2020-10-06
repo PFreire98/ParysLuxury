@@ -1,8 +1,4 @@
 package usuarios;
-/**
- @Entity
- @Table(name=Cliente)
- */
 public class Cliente {
 
     private String nome;

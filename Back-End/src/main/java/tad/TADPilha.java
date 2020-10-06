@@ -244,8 +244,38 @@ public class TADPilha {
         return -1;
     }
 
-    public int getElemento(int i){
-        return pilha[i];
+    public int getElemento(int n){
+//        int[] pilhaAuxiliar = new int[this.tamanhoMaximo];
+//        int topoAuxiliar = -1;
+//        int[] pilhaAuxiliar2 = new int[this.tamanhoMaximo];
+//        int topoAuxiliar2 = -1;
+//        int x = 0;
+//        int y = 0;
+//        int elemento = 0;
+//
+//        //DESEMPILHANDO E PROCURANDO O ELEMENTO
+//        for(int i = topo; i >= 0; i--){
+//            if(i == n-1){
+//                pilhaAuxiliar[x] = pilha[i];
+//                topoAuxiliar++;
+//                x++;
+//                elemento = pilha[i];
+//            }else {
+//                pilhaAuxiliar[x] = pilha[i];
+//                topoAuxiliar++;
+//                x++;
+//            }
+//        }
+//
+//        //EMPILHANDO NOVAMENTE
+//        for(int i = topoAuxiliar; i >= 0; i--){
+//            pilhaAuxiliar2[y] = pilhaAuxiliar[i];
+//            topoAuxiliar2++;
+//            y++;
+//        }
+//
+//        this.pilha = pilhaAuxiliar2;
+        return pilha[n];
     }
 
     //--------------------------------------------------------------------------
