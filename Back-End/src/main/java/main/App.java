@@ -2,8 +2,6 @@ package main;
 
 import connection.ReadBD;
 import produtos.Produto;
-import usuarios.Cliente;
-import usuarios.ClientePF;
 import venda.Pedido;
 
 import java.sql.SQLException;

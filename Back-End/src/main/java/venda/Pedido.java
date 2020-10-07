@@ -15,19 +15,23 @@ public class Pedido {
     private TADPilha fPedido = new TADPilha(15);
     private TADPilha fQuantidade = new TADPilha(15);
 
+    //MÉTODO CONSTRUTOR
     public Pedido(){}
 
+    //MÉTODO SETTER PARA DEFINIR PRODUTOS AO PEDIDO
     public void setPedido(Produto produto){
         this.produto = produto;
         fPedido.inserir(produto.getId());
     }
 
+    //MÉTODO SETTER PARA DEFINIR A QUANTIDADE PRODUTOS AO PEDIDO
     public void setQuantidade(int quantidade, double valor){
         this.quantidadeTotal += quantidade;
         fQuantidade.inserir(quantidade);
         this.valorTotal += (quantidade * valor);
     }
 
+    //RETORNA O CARRINHO DE COMPRAS COM TODOS OS PRODUTOS
     public String getPedido() throws SQLException, ClassNotFoundException {
         String p ="=======================\n" +
                 "  Carrinho de Compras\n" +
@@ -44,6 +48,7 @@ public class Pedido {
         return p;
     }
 
+    //METODO PARA ALTERAR ALGUM PRODUTO DO CARRINHO DE COMPRAS
     public void alteraPedido() throws SQLException, ClassNotFoundException {
         int menu = 0;
         Scanner in = new Scanner(System.in);

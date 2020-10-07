@@ -10,6 +10,9 @@ public class Produto {
     private String categoria;
     private char tamanho;
 
+    /**
+     * METODOS CONSTRUTORES
+     */
     public Produto(){}
 
     public Produto(int id, String nome, int quantidade, double valorVenda){
@@ -22,16 +25,6 @@ public class Produto {
         this.categoria =  categoria;
         this.tamanho = tamanho;
     }
-
-//    public Produto(int id, int quantidade, String descricao, double valorCompra, double valorVenda, String categoria, char tamanho){
-//        this.id = id;
-//        this.quantidade = quantidade;
-//        this.descricao = descricao;
-//        this.valorCompra = valorCompra;
-//        this.valorVenda = valorVenda;
-//        this.categoria =  categoria;
-//        this.tamanho = tamanho;
-//    }
 
     /**
      * getId
@@ -80,6 +73,4 @@ public class Produto {
      * @return Retorna o tamanho do produto.
      */
     public char getTamanho(){return tamanho;}
-
-
 }

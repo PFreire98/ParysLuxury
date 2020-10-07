@@ -12,7 +12,7 @@ public class UpdateBD {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conexao = DriverManager.getConnection(url, user, pwd);
         System.out.println("Conectado!");
-        String readsql = "UPDATE clientes SET  nome=nome, telefone=telefone, dataCadastro=dataCadastro, email=email WHERE id=id;";
+        String readsql = "UPDATE clientes SET  nome=nome, telefone=telefone, dataCadastro=dataCadastro, email=email WHERE id=?;";
         PreparedStatement readStm = conexao.prepareStatement(readsql);
         ResultSet resultSet = readStm.executeQuery();
         while (resultSet.next()) {

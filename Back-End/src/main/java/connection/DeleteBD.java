@@ -12,7 +12,7 @@ public class DeleteBD {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conexao = DriverManager.getConnection(url, user, pwd);
         System.out.println("Conectado!");
-        String readsql = "DELETE  FROM clientes WHERE id=id;";
+        String readsql = "DELETE  FROM clientes WHERE id=?;";
         PreparedStatement readStm = conexao.prepareStatement(readsql);
         ResultSet resultSet = readStm.executeQuery();
         while (resultSet.next()) {

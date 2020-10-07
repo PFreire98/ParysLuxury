@@ -1,38 +1,21 @@
 package tad;
 public class TADPilha {
+    private final int tamanhoMaximo;
+    private int topo;
+    private int[] pilha;
 
-    //=== CONSTRUTOR: inicializa os atributos
-    public TADPilha() {
-        this.tamanhoMaximo = 10;
-        this.topo = -1;
-        this.pilha = new int[tamanhoMaximo];
-    }
-
+    //MÉTODO CONSTRUTOR
     public TADPilha(int TAM) {
         this.tamanhoMaximo = TAM;
         this.topo = -1;
         this.pilha = new int[tamanhoMaximo];
     }
-    //---
 
-    //=== ATRIBUTOS
-    private final int tamanhoMaximo;
-    private int topo;
-    private int[] pilha;
-    //---
+    //=======[ MÉTODOS TRADICIONAIS ]=======//
 
-    //==========================================================================
-    // METODOS OPERACIONAIS FUNDAMENTAIS DO TAD PILHA
-    //==========================================================================
-    //
-    /**
-     * Insere um elemento na pilha. Somente inteiros >= 1
-     *
-     * @param n
-     * @return
-     */
+    //INSERIR ELEMENTO NA PILHA
     public boolean inserir(int n) {
-        if (cheia()) {
+        if (estaCheia()) {
             return false;
         } else {
             topo++;
@@ -41,54 +24,31 @@ public class TADPilha {
         }
     }
 
-    /**
-     * Remove e retorna um elemento da pilha. Se retornar 0 significa que a
-     * pilha esta' vazia.
-     *
-     * @return
-     */
+    //REMOVER ELEMENTO DA PILHA
     public int remover() {
-        if(vazia()){
+        if(estaVazia()){
             return 0;
         }else{
             return pilha[topo--];
         }
     }
 
-    /**
-     * Retorna "true" se a fila estiver cheia, caso contrario retorna "false".
-     *
-     * @return
-     */
-    public boolean cheia() {
+
+    //RETORNA TRUE SE A PILHA ESTAR VAZIA
+    public boolean estaVazia() {
+        return topo == -1;
+    }
+
+    //RETORNA TRUE SE A PILHA ESTIVER CHEIA
+    public boolean estaCheia() {
         return topo == tamanhoMaximo - 1;
     }
 
-    /**
-     * Retorna "true" se a fila estiver vazia, caso contrario retorna "false".
-     *
-     * @return
-     */
-    public boolean vazia() {
-        return topo == -1;
-    }
-    //--------------------------------------------------------------------------
-    //--------------------------------------------------------------------------
-    //--------------------------------------------------------------------------
-
-    //==========================================================================
-    // METODOS OPERACIONAIS COMPLEMENTARES DO TAD PILHA
-    //==========================================================================
-    //
-    /**
-     * Gera uma string com os elementos da pilha.
-     *
-     * @return String com os elementos da pilha em sequencia horizontal.
-     */
-    public String print() {
+    //RETORNA UMA STRING COM OS ITENS DA PILHA
+    public String imprimirPilha() {
         String p = "";
         p += "[ ";
-        if (!vazia()) {
+        if (!estaVazia()) {
             for (int i = 0; i <= topo; i++) {
                 p += pilha[i] + " ";
             }
@@ -97,32 +57,19 @@ public class TADPilha {
         return p;
     }
 
-    /**
-     * Obtem o tamanho maximo que a pilha pode atingir.
-     *
-     * @return
-     */
+    //RETORNA O TAMANHO MÁXIMO DA PILHA
     public int getTamanhoMaximo() {
         return this.tamanhoMaximo;
     }
 
-    /**
-     * Obtem a quantidade de slots vagos na pilha.
-     *
-     * @return
-     */
+    //=======[ MÉTODOS EXTRAS ]=======//
+
+    //RETORNA A QUANTIDADE DE ESPAÇOS DISPONÍVEIS NA PILHA
     public int getDisponibilidade() {
         return (this.tamanhoMaximo - this.topo - 1);
     }
 
-    /**
-     * Verifica se um determinado elemento se encontra na pilha. Serve também
-     * para impedir duplicações na pilha.
-     *
-     * @param n
-     * @return Posicao em que se encontra o elemento (indice + 1). Se o elemento
-     * nao estiver na pilha retorna 0.
-     */
+    //VERIFICA SE UM ELEMENTO "X" ESTÁ NA PILHA
     public int procurar(int n) {
         if (n <= 0) {
             return 0;
@@ -135,47 +82,12 @@ public class TADPilha {
         return 0;
     }
 
-    /**
-     * Verifica se um elemento esta' na pilha.
-     *
-     * @param n
-     * @return -1 se a pilha estiver vazia ou se o elemento nao se encontra; se
-     * encontrar o elemento, retorna a sua posicao.
-     */
-    public int estaNaPilha(int n) {
-        if (vazia()) {
-            return -1;
-        }
-        for (int i = 0; i <= topo; i++) {
-            if (n == pilha[i]) {
-                return i + 1;
-            }
-        }
-        return -1;
-    }
-
-    //= verifica o tamanho da pilha
+    //VERIFICA O TAMANHO DA PILHA
     public int tamanho() {
         return topo +1;
     }
 
-    //= posicao do elemento a partir do topo (cima para baixo)
-    //= se estiver no topo -> posicao = 1
-    public int elementoNaPosicaoN_DoTopo(int n) {
-        for (int i = 1; i < n; i++){
-            remover();
-        }
-        System.out.println("O elemento na posição "+ n + " é o " + pilha[topo]);
-        return -1;
-    }
-
-    /**
-     * Retorna a posicao sequencial de um elemento a partir do fundo (indice 0).
-     * O elemento na posicao 0 e' o elemento de posicao 1 (primeira posicao).
-     *
-     * @param
-     * @return
-     */
+    //ALTERA UM ELEMENTO NA POSIÇAO "N" DA PILHA
     public int alteraElementoN(int n1, int n2) {
         int[] pilhaAuxiliar = new int[this.tamanhoMaximo];
         int topoAuxiliar = -1;
@@ -203,16 +115,11 @@ public class TADPilha {
             topoAuxiliar2++;
             y++;
         }
-
         this.pilha = pilhaAuxiliar2;
-
         return -1;
     }
 
-    /**
-     * Remove o elemento da posição n
-     * @param n
-     * */
+    //REMOVE UM ELEMENTO DA POSIÇÃO "N" DA PILHA
     public int removeElementoN(int n) {
         int[] pilhaAuxiliar = new int[this.tamanhoMaximo];
         int topoAuxiliar = -1;
@@ -238,9 +145,7 @@ public class TADPilha {
             topoAuxiliar2++;
             y++;
         }
-
         this.pilha = pilhaAuxiliar2;
-
         return -1;
     }
 
@@ -277,8 +182,4 @@ public class TADPilha {
 //        this.pilha = pilhaAuxiliar2;
         return pilha[n];
     }
-
-    //--------------------------------------------------------------------------
-    //--------------------------------------------------------------------------
-    //--------------------------------------------------------------------------
 }
