@@ -23,7 +23,8 @@ public class ReadBD {
         while (resultSet.next()) {
             System.out.println("|ID: " + (resultSet.getString("id")) );
             System.out.println("|Produto: " + (resultSet.getString("nome")) );
-            System.out.println("|Quantidade: " + (resultSet.getString("quantidade")) );
+            System.out.println("|Descrição: " + (resultSet.getString("descricao")) );
+            System.out.println("|Quantidade em estoque: " + (resultSet.getString("quantidade")) );
             System.out.println("|Valor: " + "R$"+(resultSet.getString("valorVenda")));
             System.out.println("|--------------------");
         }

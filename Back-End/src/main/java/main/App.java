@@ -66,19 +66,3 @@ public class App {
         }
     }
 }
-/*
----Criar Produto---
-
-System.out.println("id do produto: ");
-        int id = in.nextInt();
-        System.out.println("nome do produto");
-        String nome = in.nextLine();
-        System.out.println("quantidade do produto: ");
-        int quantidade = in.nextInt();
-        System.out.println("valor venda: ");
-        double valor = in.nextDouble();
-        System.out.println("tamanho do produto: ");
-        char tamanho = in.next().charAt(0);
-        Produto produto = new Produto(id, nome, quantidade, valor);
-        break;
- */

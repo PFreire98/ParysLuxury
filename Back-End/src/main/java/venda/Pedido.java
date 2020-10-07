@@ -51,24 +51,29 @@ public class Pedido {
     //METODO PARA ALTERAR ALGUM PRODUTO DO CARRINHO DE COMPRAS
     public void alteraPedido() throws SQLException, ClassNotFoundException {
         int menu = 0;
+        int index = 0;
+        int id = 0;
         Scanner in = new Scanner(System.in);
+
         do{
-            System.out.println("[!] Qual é o id do produto que deseja alterar? ");
-            int id = in.nextInt();
-            int index = fPedido.procurar(id);
+            System.out.println("[!] O que voce gostaria de fazer?\n" +
+                    "[1] Excluir o produto\n" +
+                    "[2] Alterar o produto\n" +
+                    "[3] Sair");
+            menu = in.nextInt();
+            if(menu !=3) {
+                System.out.println("[!] Qual é o id do produto que deseja alterar? ");
+                id = in.nextInt();
+                index = fPedido.procurar(id);
+            }
             if(index == 0){
                 System.out.println("[!] Produto não está no pedido! ");
             }else {
-                System.out.println("[!] O que voce gostaria de fazer?\n" +
-                        "[1] Exluir o produto\n" +
-                        "[2] Alterar o produto\n" +
-                        "[3] Sair");
-                menu = in.nextInt();
 
                 if (menu == 1) {
                     Produto produto = ReadBD.getProdutoById(id);
                     double valor = produto.getValorVenda();
-                    int quantidade = fQuantidade.getElemento(index);
+                    int quantidade = fQuantidade.getElemento(index-1);
                     this.valorTotal -= (quantidade * valor);
 
                     fPedido.removeElementoN(index);
@@ -80,7 +85,7 @@ public class Pedido {
                     int novaQuantidade;
 
                     double valor = ReadBD.getValorById(id);
-                    int quantidade = fQuantidade.getElemento(index);
+                    int quantidade = fQuantidade.getElemento(index-1);
                     this.valorTotal -= (quantidade * valor);
 
                     System.out.println("[!] Qual é o id do novo produto? ");
@@ -90,6 +95,8 @@ public class Pedido {
 
                     double valor2 = ReadBD.getValorById(novoId);
                     this.valorTotal += (novaQuantidade * valor2);
+                    System.out.println(novaQuantidade);
+                    System.out.println(valor2);
 
                     fPedido.alteraElementoN(index, novoId);
                     fQuantidade.alteraElementoN(index, novaQuantidade);
