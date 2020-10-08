@@ -51,7 +51,7 @@ public class Pedido {
     //METODO PARA ALTERAR ALGUM PRODUTO DO CARRINHO DE COMPRAS
     public void alteraPedido() throws SQLException, ClassNotFoundException {
         int menu = 0;
-        int index = 0;
+        int indice = 0;
         int id = 0;
         Scanner in = new Scanner(System.in);
 
@@ -64,20 +64,20 @@ public class Pedido {
             if(menu !=3) {
                 System.out.println("[!] Qual é o id do produto que deseja alterar? ");
                 id = in.nextInt();
-                index = fPedido.procurar(id);
+                indice = fPedido.procurar(id);
             }
-            if(index == 0){
-                System.out.println("[!] Produto não está no pedido! ");
+            if(indice == 0){
+                System.out.println("[!] Produto não está no pedido! \n");
             }else {
 
                 if (menu == 1) {
                     Produto produto = ReadBD.getProdutoById(id);
                     double valor = produto.getValorVenda();
-                    int quantidade = fQuantidade.getElemento(index-1);
+                    int quantidade = fQuantidade.getElemento(indice-1);
                     this.valorTotal -= (quantidade * valor);
 
-                    fPedido.removeElementoN(index);
-                    fQuantidade.removeElementoN(index);
+                    fPedido.removeElementoN(indice);
+                    fQuantidade.removeElementoN(indice);
                     System.out.println(getPedido());
                 }
                 if(menu == 2){
@@ -85,7 +85,7 @@ public class Pedido {
                     int novaQuantidade;
 
                     double valor = ReadBD.getValorById(id);
-                    int quantidade = fQuantidade.getElemento(index-1);
+                    int quantidade = fQuantidade.getElemento(indice-1);
                     this.valorTotal -= (quantidade * valor);
 
                     System.out.println("[!] Qual é o id do novo produto? ");
@@ -98,8 +98,8 @@ public class Pedido {
                     System.out.println(novaQuantidade);
                     System.out.println(valor2);
 
-                    fPedido.alteraElementoN(index, novoId);
-                    fQuantidade.alteraElementoN(index, novaQuantidade);
+                    fPedido.alteraElementoN(indice, novoId);
+                    fQuantidade.alteraElementoN(indice, novaQuantidade);
                     System.out.println(getPedido());
                 }
             }

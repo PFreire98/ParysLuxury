@@ -7,6 +7,9 @@ import venda.Pedido;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * @author Amanda Ramalho - 41904567 | Gabriel Freire - 41921836 | Gustavo Boteon - 41913469
+ */
 public class App {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner in = new Scanner(System.in);
