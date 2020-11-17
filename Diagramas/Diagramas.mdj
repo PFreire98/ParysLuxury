@@ -12,25 +12,6 @@
 			"name": "Model",
 			"ownedElements": [
 				{
-					"_type": "UMLClassDiagram",
-					"_id": "AAAAAAFF+qBtyKM79qY=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Main",
-					"ownedElements": [
-						{
-							"_type": "FCFlowchart",
-							"_id": "AAAAAAF0ZQZvUsU3580=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"name": "Flowchart1"
-						}
-					],
-					"defaultDiagram": true
-				},
-				{
 					"_type": "UMLActivity",
 					"_id": "AAAAAAF0ZQa7TsU+cI0=",
 					"_parent": {
