@@ -4917,7 +4917,7 @@
 									"font": "Arial;13;0",
 									"left": 485.5,
 									"top": 484.5,
-									"width": 142.18994140625,
+									"width": 142,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF1BVDNnM0p/UE="
@@ -6002,9 +6002,9 @@
 														"$ref": "AAAAAAF04WmlBH+JVjU="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 103.59716796875,
+													"width": 93.44091796875,
 													"height": 13,
 													"text": "ComprarProdutos"
 												},
@@ -6017,7 +6017,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -6972,9 +6972,9 @@
 														"$ref": "AAAAAAF1hWdmP8MsoVw="
 													},
 													"font": "Arial;13;0",
-													"left": 523.578125,
+													"left": 522.11181640625,
 													"top": 101,
-													"width": 187.46875,
+													"width": 167.09912109375,
 													"height": 13,
 													"text": "Add todos os produtos desejado"
 												},
@@ -6987,7 +6987,7 @@
 													"font": "Arial;13;1",
 													"left": 493,
 													"top": 101,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},
@@ -11607,9 +11607,9 @@
 														"$ref": "AAAAAAF1hQ9hw7pRUxw="
 													},
 													"font": "Arial;13;0",
-													"left": 102.97900390625,
+													"left": 98.58642578125,
 													"top": 13,
-													"width": 93.49169921875,
+													"width": 83.3291015625,
 													"height": 13,
 													"text": "BuscarProdutos"
 												},
@@ -11622,7 +11622,7 @@
 													"font": "Arial;13;1",
 													"left": 37,
 													"top": 13,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -12458,9 +12458,9 @@
 														"$ref": "AAAAAAF1hT6TZsBa9Y0="
 													},
 													"font": "Arial;13;0",
-													"left": 651.578125,
+													"left": 650.11181640625,
 													"top": 117,
-													"width": 146.97705078125,
+													"width": 129.908203125,
 													"height": 13,
 													"text": "buscar todos os produtos"
 												},
@@ -12473,7 +12473,7 @@
 													"font": "Arial;13;1",
 													"left": 621,
 													"top": 117,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},
@@ -13547,9 +13547,9 @@
 														"$ref": "AAAAAAF1hYK6EMZHBRk="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 120.9453125,
+													"width": 110.02099609375,
 													"height": 13,
 													"text": "AcompanharCompra"
 												},
@@ -13562,7 +13562,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -16312,7 +16312,7 @@
 							"top": 824,
 							"width": 61.68701171875,
 							"height": 33,
-							"text": "Usuário"
+							"text": "Cliente"
 						},
 						{
 							"_type": "UMLComponentView",
