@@ -16992,7 +16992,7 @@
 															"top": 60,
 															"width": 153.7490234375,
 															"height": 13,
-															"text": "cltAcompanharCompra"
+															"text": "ctlAcompanharCompra"
 														},
 														{
 															"_type": "LabelView",
@@ -19099,7 +19099,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF1hYK6DcZFHeE="
 									},
-									"name": "cltAcompanharCompra",
+									"name": "ctlAcompanharCompra",
 									"stereotype": "controller",
 									"represent": {
 										"$ref": "AAAAAAF11uxnqhY60xw="
@@ -19184,8 +19184,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF1hYK6C8ZE/Go="
 							},
-							"name": "Role3",
-							"type": ""
+							"name": "Role3"
 						},
 						{
 							"_type": "UMLAttribute",
