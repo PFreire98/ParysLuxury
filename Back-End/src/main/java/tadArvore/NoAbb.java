@@ -14,6 +14,10 @@ public class NoAbb {
         return valor;
     }
 
+    public void setValor(int valor) {
+        this.valor =  valor;
+    }
+
     public NoAbb getNoAbbEsquerda() {
         return noAbbEsquerda;
     }
@@ -30,5 +34,30 @@ public class NoAbb {
         this.noAbbDireita = noAbbDireita;
     }
 
+    public NoAbb sucessor(NoAbb no)
+    {
+        NoAbb sucessor = no;
+
+        sucessor = sucessor.getNoAbbDireita();
+
+        while(sucessor.getNoAbbEsquerda() != null)
+            sucessor = sucessor.getNoAbbEsquerda();
+
+        return sucessor;
+    }
+
+    public NoAbb antecessor(NoAbb no)
+    {
+        NoAbb antecessor = no;
+
+        antecessor = antecessor.getNoAbbEsquerda();
+
+        while(antecessor.getNoAbbDireita() != null)
+        {
+            antecessor = antecessor.getNoAbbDireita();
+        }
+
+        return antecessor;
+    }
 
 }

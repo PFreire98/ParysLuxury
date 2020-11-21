@@ -1,10 +1,14 @@
 package tadPilha;
+
+import tadArvore.NoAbb;
+
 public class TADPilha {
     private final int tamanhoMaximo;
     private int topo;
     private int[] pilha;
 
     //MÉTODO CONSTRUTOR
+
     public TADPilha(int TAM) {
         this.tamanhoMaximo = TAM;
         this.topo = -1;
