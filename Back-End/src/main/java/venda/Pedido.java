@@ -2,7 +2,7 @@ package venda;
 
 import connection.ReadBD;
 import produtos.Produto;
-import tad.TADPilha;
+import tadPilha.TADPilha;
 
 import java.sql.SQLException;
 import java.util.Scanner;

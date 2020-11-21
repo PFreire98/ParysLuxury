@@ -1,4 +1,4 @@
-package tad;
+package tadPilha;
 public class TADPilha {
     private final int tamanhoMaximo;
     private int topo;
