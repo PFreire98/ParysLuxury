@@ -1,6 +1,7 @@
 package connection;
 
 import produtos.Produto;
+import venda.Pedido;
 
 import java.sql.*;
 
@@ -26,6 +27,32 @@ public class ReadBD {
             System.out.println("|Descrição: " + (resultSet.getString("descricao")) );
             System.out.println("|Quantidade em estoque: " + (resultSet.getString("quantidade")) );
             System.out.println("|Valor: " + "R$"+(resultSet.getString("valorVenda")));
+            System.out.println("|--------------------");
+        }
+        System.out.println("|====================");
+        System.out.println("\n");
+        conexao.close();
+    }
+
+    public static void getClientes() throws ClassNotFoundException, SQLException {
+        String nome = "";
+        int quantidade = 0;
+        double valor = 0;
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
+        String user = "root";
+        String pwd = "root";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conexao = DriverManager.getConnection(url, user, pwd);
+        String readsql = "SELECT * FROM clientes";
+        PreparedStatement readStm = conexao.prepareStatement(readsql);
+        ResultSet resultSet = readStm.executeQuery();
+        System.out.println("|====================");
+        while (resultSet.next()) {
+            System.out.println("|ID: " + (resultSet.getString("id")) );
+            System.out.println("|Nome: " + (resultSet.getString("nome")) );
+            System.out.println("|Celular: " + (resultSet.getString("celular")) );
+            System.out.println("|Data de Cadastro: " + (resultSet.getString("dataCadastro")) );
+            System.out.println("|Email: " +(resultSet.getString("email")));
             System.out.println("|--------------------");
         }
         System.out.println("|====================");
@@ -79,28 +106,24 @@ public class ReadBD {
     }
 
     //RETORNA O CARRINHO DO BANCO DE DADOS
-    public static void getCarrinho(int id) throws ClassNotFoundException, SQLException {
-        String nome = "";
-        int quantidade = 0;
-        double valor = 0;
+    public static Pedido getPedidos() throws ClassNotFoundException, SQLException {
+        int id;
+        int id2;
+        double valorTotal;
         String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
         String user = "root";
         String pwd = "root";
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conexao = DriverManager.getConnection(url, user, pwd);
-        String readsql = "SELECT id, nome, quantidade, valorVenda FROM produto WHERE id = " + id;
+        String readsql = "SELECT * FROM Pedido";
         PreparedStatement readStm = conexao.prepareStatement(readsql);
         ResultSet resultSet = readStm.executeQuery();
-        System.out.println("|====================");
         while (resultSet.next()) {
-            System.out.println("|ID: " + (resultSet.getString("id")) );
-            System.out.println("|Produto: " + (resultSet.getString("nome")) );
-            System.out.println("|Quantidade: " + (resultSet.getString("quantidade")) );
-            System.out.println("|Valor: " + "R$"+(resultSet.getString("valorVenda")));
-            System.out.println("|--------------------");
+            id = (resultSet.getInt("id"));
+            valorTotal = (resultSet.getDouble("valorTotal"));
         }
-        System.out.println("|====================");
-        System.out.println("\n");
+        Pedido pedido = new Pedido();
         conexao.close();
+        return pedido;
     }
 }
