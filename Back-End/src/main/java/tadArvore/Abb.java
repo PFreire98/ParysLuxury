@@ -4,170 +4,94 @@ public class Abb {
 
     public NoAbb raiz;
 
-    public void inserir(int valor) {
-        inserir(raiz, valor);
+    public void inserir(double valor, String nome) {
+        inserir(raiz, valor, nome);
     }
 
-    public void inserir(NoAbb _no, int valor) {
-        if (_no == null) {
-            System.out.println("Raiz " + valor);
-            raiz = new NoAbb(valor);
+    public void inserir(NoAbb no, double valor, String nome) {
+        if (no == null) {
+            //System.out.println("Raiz " + valor);
+            raiz = new NoAbb(valor, nome);
         } else {
-            if (valor < _no.getValor()) {
-                if (_no.getNoAbbEsquerda() != null) {
-                    inserir(_no.getNoAbbEsquerda(), valor);
-                } else {
-                    System.out.println("Inserindo " + valor + " a esquerda de " + _no.getValor());
-                    _no.setNoAbbEsquerda(new NoAbb(valor));
-                }
-
-            } else {
-                if (_no.getNoAbbDireita() != null) {
-                    inserir(_no.getNoAbbDireita(), valor);
-                } else {
-                    System.out.println("Inserindo " + valor + " a direita de " + _no.getValor());
-                    _no.setNoAbbDireita(new NoAbb(valor));
-                }
-            }
-        }
-    }
-
-    public void excluir(NoAbb no, NoAbb pai, int valor) {
-        //se o no em questao nao possui o valor a ser removido
-        if (no.getValor() != valor) {
             if (valor < no.getValor()) {
                 if (no.getNoAbbEsquerda() != null) {
-                    excluir(no.getNoAbbEsquerda(), no, valor);
+                    inserir(no.getNoAbbEsquerda(), valor, nome);
                 } else {
-                    System.out.println("O valor " + valor + " nao esta na arvore");
+                    //System.out.println("Inserindo " + valor + " a esquerda de " + no.getValor());
+                    no.setNoAbbEsquerda(new NoAbb(valor, nome));
                 }
+
             } else {
                 if (no.getNoAbbDireita() != null) {
-                    excluir(no.getNoAbbDireita(), no, valor);
+                    inserir(no.getNoAbbDireita(), valor, nome);
                 } else {
-                    System.out.println("O valor " + valor + " nao esta na arvore");
+                    //System.out.println("Inserindo " + valor + " a direita de " + no.getValor());
+                    no.setNoAbbDireita(new NoAbb(valor, nome));
                 }
+            }
+        }
+    }
+
+    public String localizar(double v) {
+        if (raiz == null) {
+            System.out.println("A Árvore de Produtos Esta Vazia!");
+        }
+
+        NoAbb cursor = raiz;
+
+        while (true) {
+
+            //= CURSOR = NULO -> NAO LOCALIZOU O ELEMENTO (NAO ESTA' NA ARVORE)
+            if (cursor == null) {
+                NoAbb _no = new NoAbb(-1, "");
+                String p = "Produto Não Localizado Na Árvore!";
+                return p;
+            }
+
+            //= ENCONTROU -> RETORNA O NO'
+            if (cursor.getValor() == v) {
+                String p = "[!]Produto Localizado!\n";
+                p += "Nome: " + cursor.getNome() + "\n" +
+                        "Valor: R$"+ cursor.getValor();
+                return p;
+            }
+
+            //= CONTINUAR PROCURANDO
+            if (v < cursor.getValor()) { // valor menor que o do no' cursor -> ir para a esquerda
+                cursor = cursor.getNoAbbEsquerda();
+            } else { // valor maior -> ir para a direita
+                cursor = cursor.getNoAbbDireita();
             }
 
         }
-        //se o no em questao possui o valor a ser removido      
-        else {
-            NoAbb aux;
-            //caso de remocao de folha
-            if (no.getNoAbbDireita() == null && no.getNoAbbEsquerda() == null) {
 
-                // se o no a ser removido for filho direito do pai
-                if(pai.getNoAbbDireita() == no)
-                {
-                    pai.setNoAbbDireita(null);
-                }
-                else
-                {
-                    pai.setNoAbbEsquerda(null);
-                }
+    }
+
+    public void ordem(NoAbb no) {
+        if (no != null) {
+            ordem(no.getNoAbbEsquerda());
+            System.out.println( "R$" + no.getValor());
+            ordem(no.getNoAbbDireita());
+
+        }
+    }
+
+    private void imprimirArvore(NoAbb no) {
+        if(no != null) {
+            imprimirArvore(no.getNoAbbEsquerda());
+            if (no.getNoAbbEsquerda() != null) {
+                System.out.println("R$" + no.getValor() + " esta em cima do " +  "R$" + no.getNoAbbEsquerda().getValor() + " que esta a esquerda");
             }
-            //caso onde o no possui 1 filho
-            else if (no.getNoAbbDireita() == null || no.getNoAbbEsquerda() == null) {
-
-                //se nao há subarvore à direita, pegue o antecessor
-                if (no.getNoAbbEsquerda() != null) {
-                    if(no == this.raiz)
-                    {
-                        this.raiz = no.getNoAbbEsquerda();
-                    }
-                    else
-                    {
-                        if(no.getNoAbbEsquerda() != null)
-                            pai.setNoAbbDireita(no.getNoAbbEsquerda());
-                        else
-                            pai.setNoAbbDireita(no.getNoAbbDireita());
-                    }
-                }
-                //se nao há subarvore à esquerda, pegue o sucessor
-                else {
-                    if(no == this.raiz)
-                        this.raiz = no.getNoAbbDireita();
-                    else
-                    {
-                        if(no.getNoAbbDireita() != null)
-                            pai.setNoAbbDireita(no.getNoAbbDireita());
-                        else
-                            pai.setNoAbbDireita(no.getNoAbbEsquerda());
-                    }
-                }
+            if (no.getNoAbbDireita() != null) {
+                System.out.println("R$" + no.getValor() + " esta em cima do " + "R$" + no.getNoAbbDireita().getValor() + " que esta a direita");
             }
-            /*caso de remocao de no com dois filhos: copie o sucessor para o no a ser removido
-            e remova o sucessor*/
-            else
-            {
-                aux = no.sucessor(no);
-                no.setValor(aux.getValor());
-                excluir(no.getNoAbbDireita(), no, aux.getValor());
-            }
+
+            imprimirArvore(no.getNoAbbDireita());
         }
     }
 
-    public void excluir(int valor) {
-        //caso em que a arvore está vazia
-        if (raiz == null);
-            //caso em que há apenas a raiz
-        else if(raiz.getValor() == valor &&
-                raiz.getNoAbbEsquerda() == null &&
-                raiz.getNoAbbDireita() == null)
-        {
-            this.raiz = null;
-        }
-        else {
-            excluir(raiz, raiz, valor);
-        }
+    public void imprimirArvore() {
+        imprimirArvore(this.raiz);
     }
-
-    public void preordem(NoAbb _no) {
-        if (_no != null) {
-            System.out.print(_no.getValor() + ",");
-            preordem(_no.getNoAbbEsquerda());
-            preordem(_no.getNoAbbDireita());
-
-        }
-    }
-
-    public void posordem(NoAbb _no) {
-        if (_no != null) {
-
-            posordem(_no.getNoAbbEsquerda());
-            posordem(_no.getNoAbbDireita());
-            System.out.print(_no.getValor() + ", ");
-
-        }
-
-    }
-
-    public void ordem(NoAbb _no) {
-        if (_no != null) {
-            ordem(_no.getNoAbbEsquerda());
-            System.out.print(_no.getValor() + ", ");
-            ordem(_no.getNoAbbDireita());
-
-        }
-    }
-
-// =========[Imprimir Árvore em representação de Árvore]=========
-//    public void percorrerDecrescente(NoAbb node) {	// Imprime do maior para o menor
-//
-//        if (node != null) {
-//
-//            percorrerDecrescente (node.getNoAbbDireita());	// Percorre sub-árvore direita
-//
-//            if (node  == raiz){
-//                System.out.print("_ _ _" + node.getValor() + " ");	// Visita Nó
-//                System.out.println(" ") ;
-//            } else {
-//                System.out.print("_ _ _ _ _ _" + node.getValor() + " ");    // Visita Nó
-//                System.out.println(" ");
-//                percorrerDecrescente(node.antecessor(node));
-//            }
-//            percorrerDecrescente (node.getNoAbbEsquerda());      // Percorre sub-árvore esquerda
-//        }
-//    }
 
 }

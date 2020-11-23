@@ -2,21 +2,32 @@ package tadArvore;
 
 public class NoAbb {
 
-    private int valor;
+    public NoAbb(double valor, String nome) {
+        if (nome == null) {
+            nome = "--n.def.--";
+        }
+        this.valor = valor;
+        this.nome = nome;
+        noAbbDireita = null;
+        noAbbEsquerda = null;
+    }
+
+    private double valor;
+    private String nome;
     private NoAbb noAbbEsquerda;
     private NoAbb noAbbDireita;
 
-    public NoAbb(int valor) {
-        this.valor = valor;
-    }
-
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor =  valor;
     }
+
+    public String getNome(){ return nome; }
+
+    public void setNome(String nome){ this.nome = nome;}
 
     public NoAbb getNoAbbEsquerda() {
         return noAbbEsquerda;
@@ -32,32 +43,6 @@ public class NoAbb {
 
     public void setNoAbbDireita(NoAbb noAbbDireita) {
         this.noAbbDireita = noAbbDireita;
-    }
-
-    public NoAbb sucessor(NoAbb no)
-    {
-        NoAbb sucessor = no;
-
-        sucessor = sucessor.getNoAbbDireita();
-
-        while(sucessor.getNoAbbEsquerda() != null)
-            sucessor = sucessor.getNoAbbEsquerda();
-
-        return sucessor;
-    }
-
-    public NoAbb antecessor(NoAbb no)
-    {
-        NoAbb antecessor = no;
-
-        antecessor = antecessor.getNoAbbEsquerda();
-
-        while(antecessor.getNoAbbDireita() != null)
-        {
-            antecessor = antecessor.getNoAbbDireita();
-        }
-
-        return antecessor;
     }
 
 }

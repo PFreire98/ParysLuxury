@@ -2,6 +2,7 @@ package main;
 
 import connection.ReadBD;
 import produtos.Produto;
+import tadArvore.Abb;
 import venda.Pedido;
 
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ public class App {
         int menuInicial = 0;
         int menuAdm = 0;
         double valor;
+        String nome;
 
         while(menuInicial != 9){
             System.out.println("" +
@@ -39,24 +41,43 @@ public class App {
                             "|===============================|\n" +
                             "|          ParisLuxury          |\n" +
                             "|===============================|\n" +
-                            "|1) Ver Mercadorias em Estoque  |\n" +
+                            "|1) Ver Valores dos Produtos    |\n" +
+                            "|   em Estoque na estrutura     |\n" +
+                            "|   da Abb                      |\n" +
                             "|2) Ver Clientes Cadastrados    |\n" +
-                            "|3) Verificar Pedidos em Ordem  |\n" +
-                            "|   Crescente em valores        |\n" +
+                            "|3) Verificar Valores em Ordem  |\n" +
+                            "|   Crescente na Abb            |\n" +
+                            "|4) Encontrar um Produto Pelo   |\n" +
+                            "|   Valor na Abb                |\n" +
                             "|9) Sair                        |\n" +
                             "|===============================|");
                     System.out.println("Digite a opção desejada: ");
                     menuAdm = in.nextInt();
 
                     if (menuAdm == 1){
-                        ReadBD.getCatalogo();
+                        Abb abb = new Abb();
+                        for(int i = 1; i < 6; i++) {
+                            abb.inserir(ReadBD.getValorById(i), ReadBD.getNomeById(i));
+                        }
+                        abb.imprimirArvore();
                     }else if (menuAdm == 2){
                         ReadBD.getClientes();
                     }else if (menuAdm == 3){
-                        ReadBD.getPedidos();
+                        Abb abb = new Abb();
+                        for(int i = 1; i <= 6; i++) {
+                            abb.inserir(ReadBD.getValorById(i), ReadBD.getNomeById(i));
+                        }
+                        abb.ordem(abb.raiz);
+                    }else if(menuAdm == 4){
+                        Abb abb = new Abb();
+                        for(int i = 1; i <= 6; i++) {
+                            abb.inserir(ReadBD.getValorById(i), ReadBD.getNomeById(i));
+                        }
+                        System.out.println("Digite o valor do produto que deseja encontrar no estoque: ");
+                        valor = in.nextDouble();
+                        System.out.println(abb.localizar(valor));
                     }
                 }
-
             }
 
             if(menuInicial == 2){

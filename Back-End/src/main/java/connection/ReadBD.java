@@ -12,7 +12,7 @@ public class ReadBD {
         String nome = "";
         int quantidade = 0;
         double valor = 0;
-        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String user = "root";
         String pwd = "root";
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,7 +38,7 @@ public class ReadBD {
         String nome = "";
         int quantidade = 0;
         double valor = 0;
-        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String user = "root";
         String pwd = "root";
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -65,7 +65,7 @@ public class ReadBD {
         String nome = "";
         int quantidade = 0;
         double valor = 0;
-        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String user = "root";
         String pwd = "root";
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -86,10 +86,8 @@ public class ReadBD {
 
     //RETORNA O VALOR DE UM PRODUTO DO BANCO DE DADOS ATRAVÉS DE SEU ID
     public static double getValorById(int id) throws ClassNotFoundException, SQLException {
-        String nome = "";
-        int quantidade = 0;
         double valor = 0;
-        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String user = "root";
         String pwd = "root";
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -104,13 +102,31 @@ public class ReadBD {
         conexao.close();
         return valor;
     }
+    //RETORNA O NOME DE UM PRODUTO PELO SEU ID
+    public static String getNomeById(int id) throws ClassNotFoundException, SQLException {
+        String nome = "";
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC&useSSL=false";
+        String user = "root";
+        String pwd = "root";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conexao = DriverManager.getConnection(url, user, pwd);
+        String readsql = "SELECT nome FROM produto WHERE id = " + id;
+        PreparedStatement readStm = conexao.prepareStatement(readsql);
+        ResultSet resultSet = readStm.executeQuery();
+        while (resultSet.next()) {
+            nome = (resultSet.getString("nome"));
+
+        }
+        conexao.close();
+        return nome;
+    }
 
     //RETORNA O CARRINHO DO BANCO DE DADOS
     public static Pedido getPedidos() throws ClassNotFoundException, SQLException {
         int id;
         int id2;
         double valorTotal;
-        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/parisluxury?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String user = "root";
         String pwd = "root";
         Class.forName("com.mysql.cj.jdbc.Driver");
